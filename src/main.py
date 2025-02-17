@@ -9,7 +9,6 @@ from email_cleanup import delete_old_emails
 def main():
     """Main function to execute email cleanup tasks."""
     # Set up the database connection
-    db.Base.metadata.create_all(db.db)
     session = db.Session()
 
     # Get all cleanup tasks from the database
@@ -27,5 +26,6 @@ def main():
 
 
 if __name__ == "__main__":
+    db.Base.metadata.create_all(db.db)
     logger.info("Starting email cleanup tasks...")
     main()
