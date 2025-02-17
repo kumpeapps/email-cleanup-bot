@@ -25,7 +25,7 @@ def delete_old_emails(task: CleanupTask):
     purge = subprocess.run(
         [
             "doveadm",
-            "expunge",
+            "search",
             "-u",
             user_email,
             "mailbox",
