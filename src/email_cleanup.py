@@ -11,7 +11,7 @@ def delete_old_emails(task: CleanupTask):
 
     query_by = task.query_by
     query_data = task.query_data
-    days_to_keep = float(task.days_to_keep)
+    days_to_keep = int(task.days_to_keep)
     user_email = task.user_email
 
     if query_by == "subject":
