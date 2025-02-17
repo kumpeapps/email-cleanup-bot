@@ -1,10 +1,8 @@
 """Database module for managing email cleanup tasks."""
 
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session
-
-Base = declarative_base()
+from database_connect import Base
 
 
 class CleanupTask(Base):  # type: ignore
