@@ -15,9 +15,9 @@ def delete_old_emails(task: CleanupTask):
     user_email = task.user_email
 
     if query_by == "subject":
-        search_criteria = f"subject:{query_data}"
+        search_criteria = f"SUBJECT {query_data}"
     elif query_by == "sender":
-        search_criteria = f"from:{query_data}"
+        search_criteria = f"FROM {query_data}"
     else:
         raise ValueError(f"Invalid query_by value: {query_by}")
 
@@ -28,8 +28,11 @@ def delete_old_emails(task: CleanupTask):
             "expunge",
             "-u",
             user_email,
-            f"savedbefore={datetime.now() - timedelta(days=days_to_keep)}",
+            "mailbox",
+            task.mailbox,
             search_criteria,
+            "SENTBEFORE",
+            f"{task.days_to_keep}d",
         ],
         check=False,
         capture_output=True,

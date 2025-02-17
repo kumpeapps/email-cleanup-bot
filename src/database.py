@@ -20,7 +20,8 @@ class CleanupTask(Base):  # type: ignore
     __tablename__ = "cleanup_tasks"
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     user_email = Column(String(255), nullable=False)
-    days_to_keep = Column(Integer)
+    days_to_keep = Column(Integer, nullable=False)
+    mailbox = Column(String(255), nullable=False, default="INBOX")
     query_by = Column(String(255), nullable=False)
     query_data = Column(String(255), nullable=False)
 
