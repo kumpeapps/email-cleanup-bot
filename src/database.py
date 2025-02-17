@@ -21,10 +21,10 @@ class CleanupTask(Base):  # type: ignore
 
     __tablename__ = "cleanup_tasks"
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
-    user_email = Column(String, nullable=False)
+    user_email = Column(String(255), nullable=False)
     days_to_keep = Column(Integer)
-    query_by = Column(String, nullable=False)
-    query_data = Column(String, nullable=False)
+    query_by = Column(String(255), nullable=False)
+    query_data = Column(String(255), nullable=False)
 
 
 def get_tasks(session: Session) -> list[CleanupTask]:
