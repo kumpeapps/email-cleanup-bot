@@ -14,6 +14,6 @@ database_uri: str = os.getenv(
     "DATABASE_URI",
     f"mysql+pymysql://{mysql_username}:{mysql_password}@{mysql_server}:{mysql_port}/{mysql_database}",
 )
-db = create_engine(database_uri, echo=True)
+db = create_engine(database_uri)
 Base = declarative_base()
 Session = sessionmaker(bind=db)
