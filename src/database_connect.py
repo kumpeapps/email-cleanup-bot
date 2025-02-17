@@ -1,15 +1,19 @@
-import os
+"""Database connection module."""
 
+import os
+import configparser
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-
-mysql_server: str = os.getenv("MYSQL_SERVER", "")
-mysql_username: str = os.getenv("MYSQL_USERNAME", "")
-mysql_password: str = os.getenv("MYSQL_PASSWORD", "")
-mysql_database: str = os.getenv("MYSQL_DATABASE", "Apps_JailDatabase")
-mysql_port: str = os.getenv("MYSQL_PORT", "3306")
+config = configparser.ConfigParser()
+config.read("config.ini")
+mysql_config = config["mysql"]
+mysql_server: str = mysql_config["SERVER"]
+mysql_username: str = mysql_config["USERNAME"]
+mysql_password: str = mysql_config["PASSWORD"]
+mysql_database: str = mysql_config["DATABASE"]
+mysql_port: str = mysql_config["PORT"]
 database_uri: str = os.getenv(
     "DATABASE_URI",
     f"mysql+pymysql://{mysql_username}:{mysql_password}@{mysql_server}:{mysql_port}/{mysql_database}",
