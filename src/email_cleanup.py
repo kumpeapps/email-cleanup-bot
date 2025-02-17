@@ -15,9 +15,9 @@ def delete_old_emails(task: CleanupTask):
     user_email = task.user_email
 
     if query_by == "subject":
-        search_criteria = f"SUBJECT {query_data}"
+        search_criteria = "SUBJECT"
     elif query_by == "sender":
-        search_criteria = f"FROM {query_data}"
+        search_criteria = "FROM"
     else:
         raise ValueError(f"Invalid query_by value: {query_by}")
 
@@ -31,6 +31,7 @@ def delete_old_emails(task: CleanupTask):
             "mailbox",
             task.mailbox,
             search_criteria,
+            query_data,
             "SENTBEFORE",
             f"{task.days_to_keep}d",
         ],
